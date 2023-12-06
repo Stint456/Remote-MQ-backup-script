@@ -1,0 +1,4 @@
+Run the script as below:
+
+1. We are going to give the queues in the text file as arguments:
+    #./remote_script.sh < queues.txt

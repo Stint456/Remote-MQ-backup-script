@@ -10,5 +10,5 @@
 #!/bin/bash
 
 
-/usr/bin/sshpass -p "iibadmin" ssh -o StrictHostKeyChecking=no iibadmin@10.24.16.200 'while read queue; do /opt/mqm/bin/dmpmqmsg -m QMFPDVO1 -i $queue -f $queue.$(date +%d-%m-%Y) -dA; done; sleep 3; mkdir -p /home/iibadmin/backup_queues; chmod -R 775 /home/iibadmin/backup_queues; mv /home/iibadmin/EAI.* /home/iibadmin/backup_queues; sshpass -p "iibadmin" rsync -ratlz /home/iibadmin/backup_queues/EAI.* iibadmin@10.24.16.201:/home/iibadmin/restore_queues'
+/usr/bin/sshpass -p "username" ssh -o StrictHostKeyChecking=no username@192.168.2.190 'while read queue; do /opt/mqm/bin/dmpmqmsg -m QMGR1 -i $queue -f $queue.$(date +%d-%m-%Y) -dA; done; sleep 3; mkdir -p /home/username/backup_queues; chmod -R 775 /home/username/backup_queues; mv /home/username/EAI.* /home/username/backup_queues; sshpass -p "username" rsync -ratlz /home/username/backup_queues/EAI.* username@192.168.2.191:/home/username/restore_queues'
 

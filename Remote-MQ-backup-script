@@ -1,0 +1,14 @@
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#          Script to Stop/Start QMFPPRO1                #
+#                                                       #
+# Created On : 6 December 2023         By: Sakthivel    #
+# Revision No.: 1.0                                     #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+
+#!/bin/bash
+
+
+/usr/bin/sshpass -p "iibadmin" ssh -o StrictHostKeyChecking=no iibadmin@10.24.16.200 'while read queue; do /opt/mqm/bin/dmpmqmsg -m QMFPDVO1 -i $queue -f $queue.$(date +%d-%m-%Y) -dA; done; sleep 3; mkdir -p /home/iibadmin/backup_queues; chmod -R 775 /home/iibadmin/backup_queues; mv /home/iibadmin/EAI.* /home/iibadmin/backup_queues; sshpass -p "iibadmin" rsync -ratlz /home/iibadmin/backup_queues/EAI.* iibadmin@10.24.16.201:/home/iibadmin/restore_queues'
+
